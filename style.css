@@ -1,0 +1,9 @@
+.title {
+    font-size: 36px;
+}
+
+header *{
+    display: inline-block;
+    vertical-align: middle;
+}
+
