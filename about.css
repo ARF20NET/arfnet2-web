@@ -1,0 +1,81 @@
+.verticaltext {
+    text-align: center;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.row {
+    display: flex;
+}
+
+.col {
+    flex: 33%;
+    padding: 40px;
+}
+
+.col2 {
+    float: left;
+    width: 100%;
+}
+
+.text {
+    margin-left: 20px;
+}
+
+.invisibletd {
+    padding-left: 20px;
+}
+
+.title {
+    font-size: 36px;
+}
+
+header *{
+    display: inline-block;
+}
+
+*{
+    vertical-align: middle;
+    max-width: 100%;
+}
+
+.pic100 {
+    width: 100%;
+}
+
+.pic50 {
+    width: 49%;
+}
+
+.pic2 {
+    width: calc(100% / 3);
+}
+
+.img {
+    margin-bottom: 10px;
+}
+
+.div {
+    margin: auto;
+    max-width: 1024px;
+}
+
+.aecenter {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+p {
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .div {
+    width: 100%;
+    }
+}
+
+table, th, td {
+    border: 1px solid black;
+}
