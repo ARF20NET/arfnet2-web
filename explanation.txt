@@ -1,0 +1,63 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+EXPLANATION
+
+    Basically I had to tear everything down because my ISP is angry with me,
+possibly for 3 reasons.
+    One factor might be that they didn't like the way I had my 9TB of films,
+series, software, music and leaks so _accidentally_ open to the internet.
+    Then, hosting a Tor node, albeit middle, my IP shows up on all Tor
+blocklists regardless. Why is the internet so paranoid?
+    Also I was known to them for "the previous event", funny really, explained below.
+
+THE EVENT
+    One evening I was traveling with no cell coverage, and when I returned home
+I find ARFNET with no backbone, so I call the ISP and they basically said
+that there was a cyberattack coming from my IP to a corporation. Absolutely no 
+further details.
+    So I can only think of two things, someone got into my systems and pivoted 
+through me (unlikely?) or some scared ass sysadmin saw their computers querying 
+ARFNET for NTP (ntp.pool.org) and detected that the endpoint is also a middle 
+Tor relay. Calling an ISP for that reason is moronically stupid and I shame
+whomever is responsible.
+    So after a few days without internet, revising auditing everything, shutting
+off VMs and stuff, they restored my backbone again. This was a very very close
+call, and the reason ARFNET was shot down by me. There is this guy in my ISP 
+that is just too good. He stopped the internal process of just straight out 
+canceling my service permanently, and I'm very grateful for it.
+    So I'm not risking it anymore, I'm not doing anything remotely dangerous or
+shady ever again on my public IP (apparently email is very fucking dangerous).
+Now, worry not, this is not the end of ARFNET as we know it, the shady stuff
+will return, but in a external IP address, not risking my connection. Probably
+a VPS in Russia or some shit, yeah, where DMCAs don't apply.
+
+THE PREVIOUS EVENT
+    Basically I misconfigured the Postfix SMTP server and it was acting like
+a open relay. Which would have been fine if we were in the 90s, but it turns out
+the internet is filled with spammers in the look for permissive SMTP servers
+to spam people, and the internet is very fucking paranoid of spammers so they 
+have this stupid silly blacklists of IPs. They started spamming through me
+thousends and thousends of mails, so I got into seven of those blacklists,
+until my ISP shot my backbone down, only THEN I noticed. So I closed the Postfix
+and they were good enough to open the backbone again.
+    Only later I configured it correctly and opened it to it finally working.
+
+
+                arf20
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEbdpbC/jxVMTAVCuS3r8Ryu76WWIFAmU+bVMACgkQ3r8Ryu76
+WWKdMQ/+ILrhYBilhtRZlCy4bDFOuvpkI8dk1s2x1ZqEryiqHM6Tlt/f7hT9FAnF
+XSJvPJE9bjBoGtehoJ93Li3tzCn63M1wtsSntrWot1F85pswD92bfNal+BiHX/65
+grndbyZqdkrm3o/AjxE4jYue8rqRYY0PajIbil5h6GiOfCA6hZ139RY3FBtD55An
+GAVtPKYftuC7ewITjoCIH8AzI4nOKMc5pkjF5HGdJmb+oXgIEM4ktxCXuWL/otSO
+iVNMSz0fbl+YoD1jk6O6WTCgdd6pilLBgCBwQqM0AkakfsLV5s5I8BHXOz852oix
+M9/cFeHW8RVn9aIUcqURd+5P/6reQrJuBKEFqXW/ShXER5yVter48MBqg+c4kL8w
+ul1+adKjh+EaRaeQOYI4SA+hWFW4ao9lBvOxhPQmrrVxaaSq8uqmEgVXRxNQshpl
+Xl0shDJEf6W1BWV/WR1yydiA6QipoL7Xo4vYbDA4pn0c9rCwle7iwOBtJnA95/FS
+qXTNrK0iOXUUtEU6PWwf2RLW99GNEvQtRRieOXheETg0asvjbLs5Tv1BKPjGkak+
+b9/IGicu4SLFv0HPNvAySteKlr5tKnljk2oNPxzjYP/+hviAUIUgXertECzeHZuW
+X5XenWbsMwrfpsAlOeni3UBOg0DTImxS47qaVtvP6F2EmkIICtM=
+=ZIxb
+-----END PGP SIGNATURE-----
