@@ -6,8 +6,8 @@ jobs:
   push-mirror:
     runs-on: ubuntu-latest
     steps:
-    - name: Push to remote repo
-      run: git clone https://github.com/ARF20NET/arfnet2-web && cd arfnet2-web
+    - name: Clone repo
+      run: git clone https://github.com/ARF20NET/arfnet2-web
       
     - name: Push to remote repo
-      run: git push -u https://${{secrets.MIRROR_USER}}:${{secrets.MIRROR_PASSWORD}}@git.arf20.com/arfnet2-web master
+      run: cd arfnet2-web && git push -u https://${{secrets.MIRROR_USER}}:${{secrets.MIRROR_PASSWORD}}@git.arf20.com/arfnet2-web master
