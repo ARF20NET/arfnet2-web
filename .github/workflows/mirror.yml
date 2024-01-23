@@ -10,4 +10,4 @@ jobs:
       uses: actions/checkout@v4
       
     - name: Push to remote repo
-      run: git push -u https://${{secrets.MIRROR_USER}}:${{secrets.MIRROR_PASSWORD}}@git.arf20.com/arfnet2-web master
+      run: git push -u https://${{secrets.MIRROR_USER}}:${{secrets.MIRROR_PASSWORD}}@git.arf20.com/arfnet2-web master --force
