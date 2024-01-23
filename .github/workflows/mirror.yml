@@ -1,0 +1,13 @@
+name: Mirror to ARFNET
+
+on: [push]
+
+jobs:
+  push-mirror:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Push to remote repo
+      run: git push -u https://${{secrets.MIRROR_USER}}:${{secrets.MIRROR_PASSWORD}}@git.arf20.com/arfnet2-web master
