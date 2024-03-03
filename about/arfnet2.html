@@ -159,7 +159,11 @@ ISP ===| ONT |---| DELL switch              |-----| TP-Link switch |
   <ul>
   <li>AVANZA_STATIC: 2.59.235.35</li>
   <li>AVANZA_CGNAT: dynamic</li>
-  <li>HE v6 tunnel: 2001:470:1f20:125::2</li>
+  <li>HE prefixes
+  <ul>
+  <li>2001:470:1f21:125::/64</li>
+  <li>2600:70ff:f039::/48</li>
+  </ul></li>
   <li>IONOS VPS: 5.250.186.185 2001:ba0:210:d600::1</li>
   </ul>
   <h3 id="gateways">Gateways</h3>
@@ -169,11 +173,21 @@ ISP ===| ONT |---| DELL switch              |-----| TP-Link switch |
   <li>WAN_STATIC: 2.59.235.1</li>
   <li>WAN_CGNAT: dynamic</li>
   </ul></li>
-  <li>HE v6: 2001:470:1f20:125::1 via 216.66.87.102</li>
+  <li>HE v6 tunnel
+  <ul>
+  <li>server: 216.66.87.102, 2001:470:1f20:125::1/64</li>
+  <li>client: 2.59.235.35, 2001:470:1f20:125::2</li>
+  </ul></li>
   </ul>
   <h3 id="physical-and-logical-networks">Physical and Logical
   Networks</h3>
   <table>
+  <colgroup>
+  <col style="width: 26%" />
+  <col style="width: 26%" />
+  <col style="width: 21%" />
+  <col style="width: 26%" />
+  </colgroup>
   <thead>
   <tr class="header">
   <th>name</th>
@@ -192,19 +206,19 @@ ISP ===| ONT |---| DELL switch              |-----| TP-Link switch |
   <tr class="even">
   <td>DMZ</td>
   <td>4</td>
-  <td>192.168.4.0/24 <br> 2001:470:1f21:125::/64</td>
+  <td>192.168.4.0/24 <br> 2600:70ff:f039:4::/64</td>
   <td>Services</td>
   </tr>
   <tr class="odd">
   <td>LAN</td>
   <td>5</td>
-  <td>192.168.5.0/24</td>
+  <td>192.168.5.0/24 <br> 2600:70ff:f039:5::/64</td>
   <td>Clients</td>
   </tr>
   <tr class="even">
   <td>VPN</td>
   <td></td>
-  <td>10.5.0.0/24</td>
+  <td>192.168.6.0/24 <br> 2600:70ff:f039:5::/64</td>
   <td>Wireguard clients</td>
   </tr>
   </tbody>
@@ -218,20 +232,28 @@ ISP ===| ONT |---| DELL switch              |-----| TP-Link switch |
   </ul></li>
   <li>WAN_STATIC in
   <ul>
-  <li>allow from * to {services} –&gt; NAT rules</li>
+  <li>allow v4 from * to {services} –&gt; NAT rules</li>
   </ul></li>
   <li>DMZ in
   <ul>
-  <li>deny from DMZ net to LAN net</li>
-  <li>allow from DMZ net to firewall</li>
-  <li>allow from DMZ net to * gw WAN_STATIC</li>
+  <li>deny v4 to LAN net</li>
+  <li>allow v4 to firewall</li>
+  <li>allow v4 to * gw WAN_STATIC</li>
+  <li>allow v6 to * gw HE_TUNNELV6</li>
   </ul></li>
   <li>LAN in
   <ul>
-  <li>allow ICMP from LAN net to firewall</li>
-  <li>allow IP DNS from LAN net to firewall</li>
-  <li>allow from LAN net to DMZ net</li>
-  <li>allow from LAN net to * gw WAN_CGNAT</li>
+  <li>allow v4 ICMP to firewall</li>
+  <li>allow v4 IP DNS to firewall</li>
+  <li>allow v4 to DMZ net</li>
+  <li>allow v4 to * gw WAN_CGNAT</li>
+  <li>allow v6 to * gw HE_TUNNELV6</li>
+  </ul></li>
+  <li>Wireguard in
+  <ul>
+  <li>allow v4+6 to DMZ net</li>
+  <li>allow v4 to * gw WAN_CGNAT</li>
+  <li>allow v6 to * gw HE_TUNNELV6</li>
   </ul></li>
   </ul>
   <h3 id="ipv4-nat-rules">IPv4 NAT Rules</h3>
@@ -646,10 +668,11 @@ ISP ===| ONT |---| DELL switch              |-----| TP-Link switch |
   </tr>
   </tbody>
   </table>
-  <h3 id="wazuh-dmz.10">wazuh DMZ.10</h3>
+  <h3 id="wazuh-dmz.10---secure">wazuh DMZ.10 -&gt; secure*</h3>
   <ul>
   <li>SSH</li>
   <li>wazuh</li>
+  <li>password manager server*</li>
   </ul>
   <h3 id="game-dmz.11">game DMZ.11</h3>
   <ul>
@@ -839,7 +862,7 @@ ISP ===| ONT |---| DELL switch              |-----| TP-Link switch |
   <tr class="odd">
   <td>ns1</td>
   <td>AAAA</td>
-  <td>2001:470:1f21:125::13</td>
+  <td>2600:70ff:f039:4::13</td>
   <td></td>
   </tr>
   <tr class="even">
@@ -869,7 +892,7 @@ ISP ===| ONT |---| DELL switch              |-----| TP-Link switch |
   <tr class="even">
   <td>arf20.com</td>
   <td>AAAA</td>
-  <td>2001:470:1f21:125::9</td>
+  <td>2600:70ff:f039:4::9</td>
   <td></td>
   </tr>
   <tr class="odd">
@@ -899,7 +922,7 @@ ISP ===| ONT |---| DELL switch              |-----| TP-Link switch |
   <tr class="odd">
   <td>web.arf20.com</td>
   <td>AAAA</td>
-  <td>2001:470:1f21:125::9</td>
+  <td></td>
   <td></td>
   </tr>
   <tr class="even">
@@ -911,7 +934,7 @@ ISP ===| ONT |---| DELL switch              |-----| TP-Link switch |
   <tr class="odd">
   <td>game.arf20.com</td>
   <td>AAAA</td>
-  <td>2001:470:1f21:125::11</td>
+  <td>2600:70ff:f039:4::11</td>
   <td></td>
   </tr>
   <tr class="even">
@@ -923,7 +946,7 @@ ISP ===| ONT |---| DELL switch              |-----| TP-Link switch |
   <tr class="odd">
   <td>comm.arf20.com</td>
   <td>AAAA</td>
-  <td>2001:470:1f21:125::12</td>
+  <td>2600:70ff:f039:4::12</td>
   <td></td>
   </tr>
   <tr class="even">
@@ -935,7 +958,7 @@ ISP ===| ONT |---| DELL switch              |-----| TP-Link switch |
   <tr class="odd">
   <td>misc.arf20.com</td>
   <td>AAAA</td>
-  <td>2001:470:1f21:125::13</td>
+  <td>2600:70ff:f039:4::13</td>
   <td></td>
   </tr>
   <tr class="even">
@@ -1132,15 +1155,27 @@ ISP ===| ONT |---| DELL switch              |-----| TP-Link switch |
   </thead>
   <tbody>
   <tr class="odd">
-  <td>2001:470:1f21:125::13</td>
+  <td>2600:70ff:f039:4::13</td>
   <td>PTR</td>
   <td>ns1.arf20.com</td>
   <td></td>
   </tr>
   <tr class="even">
-  <td>2001:470:1f21:125::9</td>
+  <td>2600:70ff:f039:4::9</td>
   <td>PTR</td>
   <td>arf20.com</td>
+  <td></td>
+  </tr>
+  <tr class="odd">
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  </tr>
+  <tr class="even">
+  <td>2600:70ff:f039:4::195</td>
+  <td>PTR</td>
+  <td>arfnet.nexo.moe.</td>
   <td></td>
   </tr>
   </tbody>
