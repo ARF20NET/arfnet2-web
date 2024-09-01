@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'terminus'; /*a name to be used later*/
+    src: url('/fonts/terminus.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'fixedsys'; /*a name to be used later*/
+    src: url('/fonts/FSEX300.ttf'); /*URL to font*/
+}
+
 header *{
     display: inline-block;
     vertical-align: middle;
@@ -6,11 +16,13 @@ header *{
 .title {
 	font-size: 36px;
     vertical-align: middle;
+    font-family: fixedsys;
 }
 
 body {
     background-image: url("tile1.jpg");
     background-repeat: repeat;
+    font-family: terminus;
 }
 
 .fst {
