@@ -1,11 +1,17 @@
 @font-face {
-    font-family: 'terminus'; /*a name to be used later*/
-    src: url('/fonts/terminus.ttf'); /*URL to font*/
+    font-family: 'terminus';
+    src: url('/fonts/terminus.ttf');
 }
 
 @font-face {
-    font-family: 'fixedsys'; /*a name to be used later*/
-    src: url('/fonts/FSEX300.ttf'); /*URL to font*/
+    font-family: 'fixedsys';
+    src: url('/fonts/FSEX300.ttf');
+}
+
+body {
+    background-image: url("tile1.jpg");
+    background-repeat: repeat;
+    font-family: terminus;
 }
 
 header *{
@@ -19,10 +25,18 @@ header *{
     font-family: fixedsys;
 }
 
-body {
-    background-image: url("tile1.jpg");
-    background-repeat: repeat;
-    font-family: terminus;
+.navbar {
+    text-align: center;
+}
+
+.navlink {
+    font-size: 20px;
+}
+
+.content {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .fst {
