@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <html>
     <head>
-		<meta charset="UTF-8">
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="/style.css">
-		<link rel="stylesheet" type="text/css" href="/about.css">
+        <link rel="stylesheet" type="text/css" href="about.css">
         <title>ARFNET</title>
     </head>
 
     <body>
-		<header><a href="/">
-			<img src="/arfnet_logo.png" width="64"><span class="title"><strong>ARFNET</strong></span>
-		</a></header>
-		<hr>
-		<h2 class="center">About ARFNET</h2>
-		<h3><a href="arfnet2.html">ARFNET technical description</a></h3>
-		<div class="div">
-			<p>
-			ARFNET is a non-profit organization (a homelab really) devoted to several causes such as:
-			</p>
-			<ul>
-				<li>Reenancment of the look and function of the old internet form the 80s, 90s and 2000s</li>
-				<li>Preservation of humanity's knoledge, artwork and entertainment via archival, and its availability to all</li>
-				<li>Free (as in freedom) and Open Source Software, hence all being published under GPLv3 on github</li>
-			</ul>
+        <header><a href="/">
+            <img src="/arfnet_logo.png" width="64"><span class="title"><strong>ARFNET</strong></span>
+        </a></header>
+        <hr>
+        <h2 class="center">About ARFNET</h2>
+        <h3><a href="arfnet2.html">ARFNET technical description</a></h3>
+        <div class="div">
+            <p>
+            ARFNET is a non-profit organization (a homelab really) devoted to several causes such as:
+            </p>
+            <ul>
+                <li>Reenancment of the look and function of the old internet form the 80s, 90s and 2000s</li>
+                <li>Preservation of humanity's knoledge, artwork and entertainment via archival, and its availability to all</li>
+                <li>Free (as in freedom) and Open Source Software, hence all being published under GPLv3 on github</li>
+            </ul>
 
-			<p>
-			The ARFNET infrastructure consists of a network of hosts providing services like this website itself.
-			Some of the services are for my own use, some others are public, for friends or everyone to use them, for example,
-			/FTPServer is the general directory for sharing random stuff.
-			But ARFNET didn't start like it is today, in the begining this was just me opening random ports. Now is (mostly) well organised and administrated. 
-			</p>
-			
-			<p>
-			A little bit of history now. A long time ago, several years back, I downloaded Apache HTTP Server in my shitty Pentium PC (the first host), and opened port 80 in my router.
-			That is the origin. But I wanted more, I got a FreeDNS domain, the former arf20.mooo.com, and made a HTTPS certificate. Also installed Bitvise SSH server for remote management,
-			with public key authentication, and allowed my NIC to wake the PC with Wake-on-LAN, to have it always available. But this wasn't a very good way of hosting a website, is not 24/7.
-			I had a little Raspberry Pi 2B (<i>raspi</i>), which used to serve PPTP 24/7. But a raspi is not beefy enough to run nginx and to have a big drive. So, the waiting
-			has paid off, and in summer 2021 I got my first real thicc and beautiful enterprise server. A DELL PowerEdge R720, which I inmediately bricked. You are not warned of the
-			<i>special update process</i> that iDRAC needs, so I just tried updating to the last version, which went wrong. So wrong that iDRAC cound't be reflashed again. The only
-			thing that I could do is change the motherboard, but that is even more expensive than another server. Another server? I still got eBay 1 month return warranty,
-			so I applied it. Told the seller <i>"iDRAC broke itself lol"</i>, somehow they accepted. I got my 300€ back, and bought another R720, with better CPU! So I popped the boot drive,
-			for which I choosed Ubuntu Server, and HDD from the old server, and it was almost plug-and-play. ARFNET back in business! From that point on, I have been migrating more services
-			to the server, and adding new ones, like NTP and DNS. Now, my workstation is so linked to the server with SMB mounts that it is useless without it :concern:. I'll be more careful.
-			</p>
-			
-			<p>
-			Update 2022-3: Got a rack, mounted server in the rack, also got a Mikrotik RB2011UiaS-RM, but turns out it sucks (can't do NAT fast enough), rewired the network with a nice patch panel,
-			got donated a few DELL switches and Cisco router, and finally kicked Vodafone, in favor of Avanzafibra, local ISP.
-			Pretty nice people, they offer static IPs, 1000/1000 FTTH, separate ONT, and SIP credentials.
-			Then I won an auction for 10x 3TB HGST drives, so now I've got a pretty nice 18TB RAID5 vault. The raspi died, sad. And then I eventually opened my mind and discovered just
-			how shitty ubuntu is, so I installed proxmox and made debian VMs, from which ARFNET is running now. Also got 64GB of 2Rx4 RAM for more VMs, like an OPNSense to replace the Mikrotik,
-			now I can finally make use of a full gigabit backbone, you'll notice a fantastic increase of speed. 
-			</p>
+            <p>
+            The ARFNET infrastructure consists of a network of hosts providing services like this website itself.
+            Some of the services are for my own use, some others are public, for friends or everyone to use them, for example,
+            /FTPServer is the general directory for sharing random stuff.
+            But ARFNET didn't start like it is today, in the begining this was just me opening random ports. Now is (mostly) well organised and administrated. 
+            </p>
+            
+            <p>
+            A little bit of history now. A long time ago, several years back, I downloaded Apache HTTP Server in my shitty Pentium PC (the first host), and opened port 80 in my router.
+            That is the origin. But I wanted more, I got a FreeDNS domain, the former arf20.mooo.com, and made a HTTPS certificate. Also installed Bitvise SSH server for remote management,
+            with public key authentication, and allowed my NIC to wake the PC with Wake-on-LAN, to have it always available. But this wasn't a very good way of hosting a website, is not 24/7.
+            I had a little Raspberry Pi 2B (<i>raspi</i>), which used to serve PPTP 24/7. But a raspi is not beefy enough to run nginx and to have a big drive. So, the waiting
+            has paid off, and in summer 2021 I got my first real thicc and beautiful enterprise server. A DELL PowerEdge R720, which I inmediately bricked. You are not warned of the
+            <i>special update process</i> that iDRAC needs, so I just tried updating to the last version, which went wrong. So wrong that iDRAC cound't be reflashed again. The only
+            thing that I could do is change the motherboard, but that is even more expensive than another server. Another server? I still got eBay 1 month return warranty,
+            so I applied it. Told the seller <i>"iDRAC broke itself lol"</i>, somehow they accepted. I got my 300€ back, and bought another R720, with better CPU! So I popped the boot drive,
+            for which I choosed Ubuntu Server, and HDD from the old server, and it was almost plug-and-play. ARFNET back in business! From that point on, I have been migrating more services
+            to the server, and adding new ones, like NTP and DNS. Now, my workstation is so linked to the server with SMB mounts that it is useless without it :concern:. I'll be more careful.
+            </p>
+            
+            <p>
+            Update 2022-3: Got a rack, mounted server in the rack, also got a Mikrotik RB2011UiaS-RM, but turns out it sucks (can't do NAT fast enough), rewired the network with a nice patch panel,
+            got donated a few DELL switches and Cisco router, and finally kicked Vodafone, in favor of Avanzafibra, local ISP.
+            Pretty nice people, they offer static IPs, 1000/1000 FTTH, separate ONT, and SIP credentials.
+            Then I won an auction for 10x 3TB HGST drives, so now I've got a pretty nice 18TB RAID5 vault. The raspi died, sad. And then I eventually opened my mind and discovered just
+            how shitty ubuntu is, so I installed proxmox and made debian VMs, from which ARFNET is running now. Also got 64GB of 2Rx4 RAM for more VMs, like an OPNSense to replace the Mikrotik,
+            now I can finally make use of a full gigabit backbone, you'll notice a fantastic increase of speed. 
+            </p>
 
-			<p>
-			And what will the future hold? Well, the future is not written, but I got a few ideas. Like a 10gig upgrade, but not the whole network, that would be just too expensive.
-			Just a 10GBASE-SR link, between the server and desktop, to make it even more linked together, with SATA speeds network shares. Both with their respectible 1000BASE-T links to
-			the router. I could also get a rackmounted KVM console, one of the coolest things one can have in a rack. Maybe with a KVM switch for future servers? I should get a proper 2U UPS too,
-			this one doesn't last enough.
-			</p>
-			
-			<img src="/images/about-arfnet/rack.jpg" width="50%">
-		</div>
+            <p>
+            And what will the future hold? Well, the future is not written, but I got a few ideas. Like a 10gig upgrade, but not the whole network, that would be just too expensive.
+            Just a 10GBASE-SR link, between the server and desktop, to make it even more linked together, with SATA speeds network shares. Both with their respectible 1000BASE-T links to
+            the router. I could also get a rackmounted KVM console, one of the coolest things one can have in a rack. Maybe with a KVM switch for future servers? I should get a proper 2U UPS too,
+            this one doesn't last enough.
+            </p>
+            
+            <img src="/images/about-arfnet/rack.jpg" width="50%">
+        </div>
     </body>
 </html>

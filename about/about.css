@@ -26,19 +26,6 @@
     padding-left: 20px;
 }
 
-.title {
-    font-size: 36px;
-}
-
-header *{
-    display: inline-block;
-}
-
-*{
-    vertical-align: middle;
-    max-width: 100%;
-}
-
 .pic100 {
     width: 100%;
 }
