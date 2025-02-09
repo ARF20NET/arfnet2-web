@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="/style.css">
+        <title>ARFNET</title>
+        <style>
+        .sect {
+            margin-left: 20px;
+        }
+
+        .pics {
+            display: inline-block;
+        }
+        </style>
+    </head>
+
+    <body>
+		<header><a href="/">
+			<img src="/arfnet_logo.png" width="64"><span class="title"><strong>ARFNET</strong></span>
+        </a></header>
+		<hr>
+        <h2><a href="../index.html">Projects</a></h2>
+        <h2>arfvcr</h2>
+
+        <p>
+        A friend from the <a href="https://makersofmurcia.org/">Makers of Murcia</a> hackerspace
+        brought a few 80s tube TV cameras to a retro meetup, and they were free to take. I took one such
+        SONY Trinicon HVC-4000P, an awesome camera that was released in the early 80s. At that time,
+        camcorders didn't exist, they were television cameras because there weren't small enough
+        tape mechanisms to be integrated in. They required heavy external battery powered VCRs
+        like the Sony SL-F1, that you would hang off your shoulder, which we did not have.
+        So I thought I'd build a digital knockoff.
+        </p>
+
+        <div class="pics">
+            <img src="cam.jpg" width=49%>
+            <img src="vcr.jpg" width=49%>
+        </div>
+
+        <p>
+        The thing is basically a battery powered video capture box, a little computer
+        with a composite capture card attached. I chose to base it on a Raspberry Pi 4B
+        because it has to be fast enough to encode video at real time; and for the capture
+        card I had a *forgot* USB card, that exposes a raw yuv422 stream thanks to the
+        video4linux2 driver. Interfacing with the camera, the same friend gave me the
+        hard to find matching female connector that I could just mount to a chassis.
+        Finally for power, because I am a cheap and simple person, I went with a 7Ah
+        lead acid battery, which was very controversial in the hackerspace telegram channel :)
+        </p>
+
+        <div class="pics">
+            <img src="in1.jpg" width=32%>
+            <img src="in2.jpg" width=32%>
+            <img src="bat.jpg" width=32%>
+        </div>
+
+        <p>
+        So, power comes in from the battery or a barrel jack in the front panel, and comes to a
+        general power switch. That then goes to a 12-to-5V buck converter for the raspi and to another
+        toggle switch for the camera. The front panel also has a volt meter to check battery charge,
+        power and status LEDs, the rec/review switch and of course, the proprietary SONY connector
+        for the camera.
+        </p>
+
+        <div class="pics">
+            <img src="front.jpg" width=49%>
+        </div>
+
+        <p>
+        The tethering cable has AV in and out, because it can also review recorded footage; and
+        some control signals as well: recording start/stop (from camera), rec/review (from camera),
+        tally signal in (from VCR: switches the viewfinder and monitor headphone jack to AV in).
+        Now, slight problem. I don't know how the signaling is supposed to work. start/stop and rec/review
+        aren't simple HIGH/LOW signals, they have no voltage when hitting the reflected buttons.
+        The camera also doesn't respond to a LOW or HIGH on the tally sig in, 5 nor 12V.
+        I should review the public schematics for the thing and figure it out.
+        Also, the audio out appears to be quiet.
+        </p>
+
+        <div class="pics">
+            <img class="pics" src="con.jpg" width=49%>
+        </div>
+
+        <p>
+        Software wise, I installed Debian 12 for ARM64, and then found that I needed a feature for
+        power debugging, so I had to install the downstream rasperry-pi kernel and userspace software.
+        I found that the hardware encoder never worked at all with any OS or ffmpeg version so it
+        mattered not, thats why I needed a fast raspi, for RT libx264. Of couse as mentioned,
+        ffmpeg was chosen by default for video capture and encoding. I love ffmpeg. Thanks Fabrice Bellard.
+        ffmpeg is love, ffmpeg is life.
+        </p>
+
+        <p>
+        Because this is a headless device and I shouldn't need a console to hit record (although
+        the raspi creates a WiFi network to ssh into), I had to write
+        some software to trigger ffmpeg; so I wrote a daemon in C that reads GPIO pins from the front
+        panel or the camera (explained later) to start and stop the capture.
+        All of this is GPL available at <a href="https://github.com/arf20/arfvcr">github</a>.
+        </p>
+        
+        <div class="pics">
+            <img class="pics" src="me.jpg" width=49%>
+            <img class="pics" src="frame.jpg" width=49%>
+        </div>
+
+        <p>
+    </body>
+</html>
+
