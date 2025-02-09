@@ -26,7 +26,8 @@ body {
     background-color: #282C34;
     color: #abb2bf;
 
-    font-family: monospace;
+    font-family: ui-sans-serif;
+    font-weight: 500;
 
     max-width: 1000px;
     margin-left: auto;
@@ -55,7 +56,7 @@ body {
 }
 
 .navlink {
-    font-size: 20px;
+
 }
 
 .content {
