@@ -8,10 +8,25 @@
     src: url('/fonts/FSEX300.ttf');
 }
 
+@font-face {
+    font-family: 'monospace';
+    font-weight: 500;
+    src: url('/fonts/LiberationMono-Regular.ttf');
+}
+
+a:link {
+    color: #61AFEF;
+}
+
+a:visited {
+    color: #C678DD;
+}
+
 body {
-    background-image: url("tile1.jpg");
-    background-repeat: repeat;
-    font-family: terminus;
+    background-color: #282C34;
+    color: #abb2bf;
+
+    font-family: monospace;
 
     max-width: 1000px;
     margin-left: auto;
