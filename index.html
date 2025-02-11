@@ -11,6 +11,41 @@
         <meta content="http://arf20.com/arfnet_logo.png" property="og:image" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="/style.css">
+        <style>
+        .navbar {
+            text-align: center;
+        }
+
+        .navlink {
+
+        }
+
+        .content {
+            display: flex;
+        }
+        
+        .row {
+            flex: 50%;
+        }
+
+        .fst {
+            font-size: 150%;
+        }
+
+        .sec {
+            margin-left: 20px;
+            font-size: 150%;
+        }
+
+        .imgcont {
+            width: 34px;
+            height: 34px;
+        }
+
+        .item {
+            display: inline-block;
+        }
+        </style>
     </head>
     <body>
         <header class="header">
@@ -31,34 +66,81 @@
         <marquee scrollamount="15">Now fully legal!!!</marquee>
         <hr>
         <main class="content">
-            <a class="fst" href="/about_me.html">About me</a><br>
-            <a class="fst" href="/projects/">Projects</a><br>
+            <div class="row">
+                <span class="fst">Meta</span><br>
+                <a class="sec" href="/about_me.html">About me</a><br>
                 <a class="sec" href="/about/">About ARFNET</a>
                     <a class="sec" href="/explanation.txt">Lore</a><br>
-            <a class="fst" href="https://blog.arf20.com">Blog</a><br>
-            <a class="fst" href="/services.html">Services</a><a class="sec" href="https://dash.arf20.com">Order</a><br>
-                <a class="sec" href="https://memes.arf20.com/">Memes</a><br>
-                <a class="sec" href="/chat.html">Chat</a><br>
-                <a class="sec" href="/game.html">Game</a><br>
-                <a class="sec" href="https://webmail.arf20.com">Webmail</a><br>
-                <a class="sec" href="https://nextcloud.arf20.com">Nextcloud</a><br>
-                <a class="sec" href="https://jellyfin.arf20.com">Jellyfin</a><br>
-                <a class="sec" href="http://cgit.arf20.com">Cgit</a><br>
-                <a class="sec" href="http://forum.arf20.com">Forum</a><br>
-                <a class="sec" href="/usenet.html">USENET</a>
-                    <a class="sec" href="http://news.arf20.com/">Web newsreader</a><br>
-                <a class="sec" href="https://grafana.arf20.com">Grafana</a><br>
-                <a class="sec" href="http://deb.arf20.com">Debian repo</a><br>
-                <a class="sec" href="http://radio.arf20.com">Radio</a><br>
-                <a class="sec" href="http://os.arf20.com">Operating System Collection</a><br>
-            <a class="fst" href="/astro/">Astrophotography section</a><br>
-            <a class="fst" href="/webring.html">Webring</a><br>
+                <a class="fst" href="/projects/">Projects</a><br>
+                <a class="fst" href="https://blog.arf20.com">Blog</a><br>
+                <a class="fst" href="/astro/">Astrophotography section</a><br>
+                <a class="fst" href="/webring.html">Webring</a><br>
+            </div>
+            <div class="row">
+                <div class="fst">
+                    <div class="item imgcont"><img src="arfnet_logo.png"></div>
+                    <a href="/services.html">Services</a> <a href="https://dash.arf20.com">Order now!</a>
+                </div>
+                <div class="sec">
+                    <div class="item imgcont"><img src="/images/icons/pepe.png"></div>
+                    <a href="https://memes.arf20.com/">Memes</a>
+                </div>
+                <div class="sec">
+                    <div class="item imgcont"><img src="/images/icons/matrix.png"></div>
+                    <a href="/chat.html">Chat</a>
+                </div>
+                <div class="sec">
+                    <div class="item imgcont"><img src="/images/icons/minecraft.png"></div>
+                    <a href="/game.html">Game</a>
+                </div>
+                <div class="sec">
+                    <div class="item imgcont"><img src="/images/icons/squirrelmail.png"></div>
+                    <a href="https://webmail.arf20.com">Webmail</a><br>
+                </div>
+                <div class="sec">
+                    <div class="item imgcont"><img src="/images/icons/nextcloud.png"></div>
+                    <a href="https://nextcloud.arf20.com">Nextcloud</a>
+                </div>
+                <div class="sec">
+                    <div class="item imgcont"><img src="/images/icons/jellyfin.png"></div>
+                    <a href="https://jellyfin.arf20.com">Jellyfin</a>
+                </div>
+                <div class="sec">
+                    <div class="item imgcont"><img src="/images/icons/cgit.png"></div>
+                    <a href="http://cgit.arf20.com">Cgit</a>
+                </div>
+                <div class="sec">
+                    <div class="item imgcont"><img src="/images/icons/phpbb.png"></div>
+                    <a href="http://forum.arf20.com">Forum</a>
+                </div>
+                <div class="sec">
+                    <div class="item imgcont"><img src="/images/icons/usenet.jpg"></div>
+                    <a href="/usenet.html">USENET</a>
+                    <a href="http://news.arf20.com/">Web newsreader</a><br>
+                </div>
+                <div class="sec">
+                    <div class="item imgcont"><img src="/images/icons/grafana.png"></div>
+                    <a href="https://grafana.arf20.com">Grafana</a>
+                </div>
+                <div class="sec">
+                    <div class="item imgcont"><img src="/images/icons/debian.png"></div>
+                    <a href="http://deb.arf20.com">Debian repo</a>
+                </div>
+                <div class="sec">
+                    <div class="item imgcont"><img src="/images/icons/mpd.png"></div>
+                    <a href="http://radio.arf20.com">Radio</a><br>
+                </div>
+                <div class="sec">
+                    <div class="item imgcont"><img src="/images/icons/tux.png"></div>
+                    <a href="http://os.arf20.com">Operating System Collection</a><br>
+                </div>
+            </div>
         </main>
         <hr>
         <footer>
             <span>Last update 08-02-2025. Estabished 2019. Contact: <a target="_blank" href="mailto:arf20@arf20.com">arf20@arf20.com</a> <a href="/arf20_public.asc">PGP</a> Murcia, Spain.</span><br>
-            <a href="/LICENSE">Everything here is by default published under the GPLv3</a>
-            <a href="/">Copyright &copy; 2023 ARFNET</a><br>
+            <span>Everything here is by default published under the <a href="/LICENSE">GPLv3</a></span>
+            <span>Copyright &copy; 2025 ARFNET</span><br>
             <img src="gifs/bestvw.gif">
             <img src="gifs/vim.gif">
             <img src="gifs/powered-by-nginx.gif">
