@@ -26,7 +26,7 @@ body {
     background-color: #282C34;
     color: #abb2bf;
 
-    font-family: ui-sans-serif;
+    font-family: monospace, system-ui;
     font-weight: 500;
 
     max-width: 1000px;
