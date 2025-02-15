@@ -73,7 +73,7 @@
         tally signal in (from VCR: switches the viewfinder and monitor headphone jack to AV in).
         Now, slight problem. I don't know how the signaling is supposed to work. start/stop and rec/review
         aren't simple HIGH/LOW signals, they have no voltage when hitting the reflected buttons.
-        The camera also doesn't respond to a LOW or HIGH on the tally sig in, 5 nor 12V.
+        The camera also doesn't respond to a LOW or HIGH on the tally sig in, 5 nor 12V, maybe open drain(?).
         I should review the public schematics for the thing and figure it out.
         Also, the audio out appears to be quiet.
         </p>
@@ -94,11 +94,12 @@
         <p>
         Because this is a headless device and I shouldn't need a console to hit record (although
         the raspi creates a WiFi network to ssh into), I had to write
-        some software to trigger ffmpeg; so I wrote a daemon in C that reads GPIO pins from the front
-        panel or the camera (explained later) to start and stop the capture.
+        some software to trigger ffmpeg; so I wrote a daemon in C that reads a GPIO pins from a record front
+        panel toggle switch or the camera (start/stop signal - explained before) to start and stop
+        the capture, and a record status LED that turns on only if ffmpeg has open the capture card.
         All of this is GPL available at <a href="https://github.com/arf20/arfvcr">github</a>.
         </p>
-        
+
         <div class="pics">
             <img class="pics" src="me.jpg" width=49%>
             <img class="pics" src="frame.jpg" width=49%>
