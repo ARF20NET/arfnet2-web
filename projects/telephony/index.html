@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="/style.css">
+        <title>ARFNET</title>
+        <style>
+        .sect {
+            margin-left: 20px;
+        }
+
+        .pics {
+            display: inline-block;
+        }
+        </style>
+    </head>
+
+    <body>
+		<header><a href="/">
+			<img src="/arfnet_logo.png" width="64"><span class="title"><strong>ARFNET</strong></span>
+        </a></header>
+		<hr>
+        <h2><a href="../index.html">Projects</a></h2>
+        <h2>telephony</h2>
+
+
+        <h3>Intro</h3>
+
+        <p>
+        We've all had landlines at home, but what first got me interested in telephony,
+        was a laptop with an internal modem which I got to play with, and a InfoVia Plus information card
+        with my cousin, which in my failing memory I think is whom I owe my love for retrocomputing and by extension
+        everything technologically dated, although my tasted may shift towards professional and enterprise hardware.
+        </p>
+
+        <h3>Dial-Up backstory</h3>
+
+        <p>
+        The InfoVía Plus thing is rather interesting. As far as I know its a dial-up service created by Telefónica in 1999
+        for the price of the phone call, which it was still a monopoly of Telefonica. Of course, I wasn't alive to
+        see it in its time but rather, much much later in the mid 2010s, by which time the service was still very much
+        in service, although I'd imagine with few users given that the DSL, VDSL and mostly ADSL broadband services and later
+        HFC of other, emerging ISPs took much of the clientele of Telefónica itself. I'd use a Fujitso Siemens laptop from
+        my father with an internal modem, and using Windows XP dial my town's node and connect with if I remember correctly
+        something like infovia@123 via PPP, and get 33.8 or 48kbps sometimes of internet connectivity. With which you could
+        navigate good ol' sites like sdf.org, frogsearch, stoff.pl? And of course ARFNET. At the time of writing, I made a
+        small survey and I could only find one node still running and answering, the Toledo one.
+        </p>
+
+        <h3>Meta and first steps</h3>
+        <p>
+        Consider this document not a writeup, but something like an evolving tale, which starts with the online
+        finding and holy installation of sacred Asterisk Open Source PBX and telephony toolkit; followed by the interpretation
+        of the holy configuration scriptures, and sacred online documentation. As you may expect, my 17-year-old
+        ass got bored of not getting that nonsense to work pretty quick with the ancient, arcane chan_sip module of what is now
+        Debian oldstable's package.
+        </p>
+
+        <p>
+        Thankfully, the story didn't end there. Thanks to the inspiration of SDF and its people, I pressed on
+        but in reality it took several attempts, fixations, frustrations and abandonment over the course of
+        several years until today, when I can finally say I did it. I here described how I did it do the silly things
+        a telephone system does.
+        </p>
+
+        <p>
+        After finding how useless the chan_sip module is I decided to just build a modern version of Asterisk from source (20 at the time)
+        I followed many tutorials that used the wizard configuration but I never got that to work either. So I asked for help
+        at some friend's nerdy telephony (among other things) discord and set up the chan_pjsip module, which actually did work, with
+        softphone clients (MicroSIP on windows). I didn't go much further than that, and left it like that.
+        </p>
+
+        <p>
+        Later I went looking for real hardware to use with my newly setup PBX, like ATAs and IP phones,
+        but I didn't have any purchasing power at the time, until someday at school I was given two Cisco 3911 IP phones from school,
+        from my legend, Rosendo, the guy himself. However, I immediately discovered Cisco and its shenanigans.
+        A time of despair.
+        </p>
+
+        <h3>ATAs</h3>
+
+        <p>
+        Another time, at a local morrocan flea market, I found a god damm Linksys PAP2T ATA somehow??? You never know what you find
+        in those places. Old vidicon cameras? Rotary phones? Yamaha keyboards? A bit of a time machine these markets are,
+        from I guess the fleeing old rich population of the south, since the increasing collapse of the economy and
+        opportunities, too bad! Their time is over. With the newly acquired ATA for a whoopping 3€, I figured out
+        from the manual that it had a password, and I had to reset it with a god forsaken code from an old forum,
+        dialing with a god knows brand 2000s cheap small gondola-style phone I got from a friend. I then proceeded to set it
+        up at home with its ancient webfig, and it pretty much just worked. I was able to make calls and all.
+        </p>
+
+        <p>
+        I then got another ATA bought from another friend, a Grandstream HT702, hoping that it would
+        work with rotary phones (haven't tested that yet, but the webfig makes no mention to pulse dialing)
+        and I set it up at my student place, to register remotely over the internet (since I had no router
+        capable of doing site-to-site tunneling (asaide from that damm Mikrotik that I could
+        never get to work)) and for the first time, I could make a real phone-to-phone call, over the internet
+        using the PBX, to a remote place (my parent's) so it finally could have purpose. Note: for the
+        purposes of the story, I am telling it in a rather linear fashion trying to make it make sense
+        but in reality some of these events are very mixed and intertwined with much more failure than success.
+        </p>
+
+        <h3>IP phones</h3>
+
+        <p>
+        At a different unspecified time, rather parallel, I got another, Cisco IP phone, a 7941, from a friend
+        and got told this one COULD work with Asterisk if I flashed it with its SIP firmware (Asterisk does not ship with SCCP or skippy support).
+        So anyway, I bricked it in the process. And it stayed so until recently where I had the brilliant idea of
+        flashing its original firmware back, and that got it unbricked. The brick mode was rather silly,
+        because it would stay in flashing mode whenever it booted, try to download firmware, fail and reboot again.
+        The reason I got back to the original SCCP firmware is that I got told about the existance of the out of tree chan_sccp asterisk module, which is actually really really good.
+        </p>
+
+    
+        <h4>SEPfiles</h4>
+        <p>
+        Cisco IP phones automatically get their IP addresses via DHCP, and from it take a TFTP server,
+        from which they try to download among other things, a file named SEP<MAC>.cnf.xml, <MAC> being
+        the phone's MAC address in uppercase hex without separators. This is the so called sepfile and
+        it describes the phone's configuration, including but not limited to its time server, Cisco UCM server,
+        timezones, directory URLs, and stuff. I was able to find a sepfile for the 7941 but not for the 3911 phones.
+        Which launched me on a very long detour that took around 51 years.
+        </p>
+
+        <h4>Cisco 7941</h4>
+        <p>
+        So, having burnt the SCCP firmware back again, I installed chan_sccp from source to the asterisk and tested the module.
+        And with a SEP file for the 7941 I got off the internet, I modified it and pointed the phone to the Asterisk running chan_sccp masking as
+        CUCM, and allll the SCCP features just work out of the box! I'd even dare to say that the experience is better than chan_pjsip. Awesome
+        </p>
+
+        <h4>Cisco Unified Communications Manager</h4>
+        <p>
+        For the purposes of making the 3911s work, I got a CUCM ISO from the internet and spent too much
+        time trying to virtualise it in KVM, first installing it on VMWare and then moving it over to KVM trying to
+        virtualise the devices it expects. After getting it to boot, I proceeded to set up all the required objects
+        and configuration to add a phone device, the 3911.
+        </p>
+
+        <h4>Cisco 3911</h4>
+        <p>
+        When I confirmed that the 3911 indeed registers with CUCM, I used a tftp client to fetch its SEP file
+        and modified it to my needs to point it to asterisk, having added the corresponding endpoint, aor, auth and stuff.
+        And to my surprise, ancient Cisco SIP works with Asterisk. Damm. No fancy features though.
+        </p>
+
+        <h3>Trunks</h3>
+
+        <p>
+        The original inspiration in the project was to have a PBX with an SDF SIP trunk. I think I did get it to work a while ago, but
+        in the meantime of trying stuff I guess it broke, but I recently fixed it! Copying another working configuration from a posterior trunk.
+        </p>
+
+        <p>
+        After having the ATAs working roughly as they are now, someone told me about TandmX, and it was simple enough to join,
+        being an IAX2 trunk, very simple and stable, and met a whole lot of people in their discord.
+        </p>
+
+        <p>
+        A bunch of years after hiring AvanzaFibra and being told by someone somewhere that I could ask for the SIP credentials for my fixed
+        phone line that comes off the router (lines lying about being VoIP) which my ISP formally does not offer VoIP lines; I insisted over the phone and raised
+        a ticket 3 times until eventually I could talk to an actual tech that knew what the hell I was talking about. He had to generate new creds for my line (the ISP's CPE ATA would stop working (thats fine))
+        and he would have it sent to my email, so they did. It registered correctly but after a minute the trunk would stop working, originating or terminating calls for some reason. The reason was keepalive I think.
+        So I made Asterisk do keepalives (SIP OPTIONS) every 58 seconds). Then applied the same config to the SDF trunk apparently. Now I have PSTN calls!!!
+        </p>
+
+        <div class="pics">
+            <img src="cam.jpg" width=49%>
+            <img src="vcr.jpg" width=49%>
+        </div>
+
+        
+        <div class="pics">
+            <img src="in1.jpg" width=32%>
+            <img src="in2.jpg" width=32%>
+            <img src="bat.jpg" width=32%>
+        </div>
+    </body>
+</html>
+
