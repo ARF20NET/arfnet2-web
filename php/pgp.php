@@ -1,6 +1,6 @@
 <?php
 
-$result = "kajsdhaskj";
+$result = null;
 
 if (isset($_GET["op"])) {
     if (!file_exists('/tmp/gpg')) {
