@@ -57,7 +57,7 @@ if (isset($result)) {
     } else {
         echo "<textarea readonly rows=\"25\" cols=\"80\">\n$result\n</textarea>";
     }
-} else echo "Unset";
+}
 ?>
         </main>
     </body>
